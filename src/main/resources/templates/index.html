@@ -1,56 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link href="style.css" rel="stylesheet"> </head>
-
-<body class="Site">
-<header class="header">
-    <div class="logo"><a class="logo-text">Файні рецепти</a></div>
-    <div class="search-line">
-        <div class="search">
-            <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
-            <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
-        </div>
-    </div>
-    <div class="login">
-        <button class="button button-login">Login</button>
-        <button class="button button-signup">Sign Up</button>
-    </div>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:th="http://www.thymeleaf.org">
+<header>
+    <div th:replace="header :: myheader"></div>
 </header>
+<body class="Site">
 <main class="content">
     <div class="block1">
         <div class="popular-label"><a class="popular-label-text">Рекомендовані рецепти</a></div>
         <div class="popular-tests">
             <article class="test">
-                <img src= "images/test.png" class="test-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
                 <span class="test-name">Назва рецепту</span>
             </article>
             <article class="test">
-                <img src= "images/test.png" class="test-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
                 <span class="test-name">Назва рецепту</span>
             </article>
             <article class="test">
-                <img src= "images/test.png" class="test-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
                 <span class="test-name">Назва рецепту</span>
             </article>
             <article class="test">
-                <img src= "images/test.png" class="test-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
                 <span class="test-name">Назва рецепту</span>
             </article>
             <article class="test">
-                <img src= "images/test.png" class="test-image">
-                <span class="test-name">Назва рецепту</span>
-            </article>
-            <article class="test">
-                <img src= "images/test.png" class="test-image">
-                <span class="test-name">Назва рецепту</span>
-            </article>
-            <article class="test">
-                <img src= "images/test.png" class="test-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
                 <span class="test-name">Назва рецепту</span>
             </article>
         </div>

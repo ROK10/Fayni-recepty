@@ -1,0 +1,25 @@
+<html lang="en">
+<body>
+<div th:fragment = "myheader" >
+    <link th:href="@{/style.css}"
+          href="../static/style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <div class="header">
+        <div class="logo"><a class="logo-text">Файні рецепти</a></div>
+        <div class="search-line">
+            <div class="search">
+                <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
+                <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
+            </div>
+        </div>
+        <div class="login">
+            <button class="button button-login">Login</button>
+            <button class="button button-signup">Sign Up</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
