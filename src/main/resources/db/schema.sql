@@ -101,3 +101,6 @@ VALUES (1, 1),
        (1, 4),
        (1, 5),
        (1, 6);
+
+INSERT INTO users_created_recipes (user_id, recipe_id) VALUES
+(1, 1);
