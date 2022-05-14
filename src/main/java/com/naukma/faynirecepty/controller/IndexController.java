@@ -1,7 +1,9 @@
 package com.naukma.faynirecepty.controller;
 
 import com.naukma.faynirecepty.model.entity.Recipe;
+import com.naukma.faynirecepty.model.entity.User;
 import com.naukma.faynirecepty.repository.RecipeRepository;
+import com.naukma.faynirecepty.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,9 @@ public class IndexController {
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @RequestMapping({"/", ""})
     public String index(Model model){
 
@@ -30,9 +35,10 @@ public class IndexController {
     @RequestMapping({"/recipe/{id}", ""})
     public String showInfoPage(Model model, @PathVariable(name = "id") Long id, HttpSession session) {
         Recipe recipe = recipeRepository.getById(id);
-        List<Recipe> popular = recipeRepository.findPopular();
+        User creator = userRepository.getById(recipe.getCreatorId());
 
-        model.addAttribute("popular", popular);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("creator", creator);
         if (recipe != null) {
 //            String liked = "no";
 

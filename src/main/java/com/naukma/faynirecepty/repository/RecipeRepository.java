@@ -1,6 +1,7 @@
 package com.naukma.faynirecepty.repository;
 
 import com.naukma.faynirecepty.model.entity.Recipe;
+import com.naukma.faynirecepty.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "limit 7",
     nativeQuery = true)
     List<Recipe> findPopular();
-
 
 }

@@ -37,19 +37,15 @@ public class User {
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<Recipe> createdRecipes = new ArrayList<>();
-
-    @OneToMany(
-            cascade = CascadeType.MERGE,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY
-    )
     private List<Recipe> likedRecipes = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
     private Role role;
 
 }

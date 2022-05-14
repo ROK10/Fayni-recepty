@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -22,6 +23,9 @@ public class Role {
 
     @Column(name = "name", nullable = false, length = 45)
     private String name;
+
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 
     @Override
     public String toString() {
