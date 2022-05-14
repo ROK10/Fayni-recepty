@@ -28,10 +28,12 @@ public class IndexController {
     }
 
     @RequestMapping({"/recipe/{id}", ""})
-    public String showInfoPage(@PathVariable(name = "id") Long id, HttpSession session) {
+    public String showInfoPage(Model model, @PathVariable(name = "id") Long id, HttpSession session) {
         Recipe recipe = recipeRepository.getById(id);
-        if (recipe != null) {
+        List<Recipe> popular = recipeRepository.findPopular();
 
+        model.addAttribute("popular", popular);
+        if (recipe != null) {
 //            String liked = "no";
 
 //            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

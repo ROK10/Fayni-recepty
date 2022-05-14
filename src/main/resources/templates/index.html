@@ -8,10 +8,10 @@
 <main class="content">
     <div class="block1">
         <div class="popular-label"><a class="popular-label-text">Рекомендовані рецепти</a></div>
-        <div class="popular-tests">
-            <article class="test">
-                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
-                <span class="test-name">Назва рецепту</span>
+        <div class="popular-tests" th:each="Recipe: ${popular}">
+            <article class="test" >
+                <img src= "../static/images/test.png" th:src="${Recipe.img}" class="test-image-recommended">
+                <span class="test-name" th:text="${Recipe.title}" ></span>
             </article>
             <article class="test">
                 <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-image-recommended">
