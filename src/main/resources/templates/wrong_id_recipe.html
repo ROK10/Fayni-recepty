@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+    <div th:replace="header :: myheader"></div>
+</header>
+<body>
+    <main class="content">
+        <div class="recipe-block1">
+            <div class="recipe-name">
+                <span class="title">Test title</span>
+            </div>
+            <div class="recipe-image">
+                <img src= "../static/images/test.png" th:src="@{/images/test.png}" class="test-recipe-image">
+            </div>
+        </div>
+        <div class="recipe-block2">
+            <div class="recipe-info">
+                <div class="info-field">
+                    <span class="info-field-text">Автор</span>
+                    <span class="info-fields author">Михалевич</span>
+                </div>
+                <div class="info-field">
+                    <span class="info-field-text">Складність</span>
+                    <span class="info-fields complexity">Very Hard</span>
+                </div>
+                <div class="info-field">
+                    <span class="info-field-text">Час приготування</span>
+                    <span class="info-fields time">3 дні</span>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-block3">
+            <div class="description">
+                Sed placerat accumsan ligula. Aliquam felis magna, congue quis, tempus eu, aliquam vitae, ante. Cras neque justo,
+                ultrices at, rhoncus a, facilisis eget, nisl. Quisque vitae pede. Nam et augue. Sed a elit. Ut vel massa.
+                Suspendisse nibh pede, ultrices vitae, ultrices nec, mollis non, nibh. In sit amet pede quis leo vulputate hendrerit.
+                Cras laoreet leo et justo auctor condimentum. Integer id enim. Suspendisse egestas, dui ac egestas mollis,
+                libero orci hendrerit lacus, et malesuada lorem neque ac libero. Morbi tempor pulvinar pede. Donec vel elit.
+            </div>
+        </div>
+    </main>
+</body>
+</html>

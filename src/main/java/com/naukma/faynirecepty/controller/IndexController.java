@@ -28,4 +28,29 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping({"/recipe/{id}", ""})
+    public String showInfoPage(@PathVariable(name = "id") Long id, HttpSession session) {
+        Recipe recipe = recipeRepository.getById(id);
+        if (recipe != null) {
+
+//            String liked = "no";
+
+//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//            if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//                String currentUserName = authentication.getName();
+//
+//                Set<Book> likedBooks = userService.getUserByUsername(currentUserName).getLikedBooks();
+//
+//                if(likedBooks != null) {
+//                    liked = likedBooks.contains(book)? "yes" : "no";
+//                }
+//            }
+
+//            BookDto bookDto = new BookDto(book, liked);
+            session.setAttribute("recipe", recipe);
+            return "recipe";
+        }
+        return "wrong_id_recipe";
+    }
+
 }
