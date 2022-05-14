@@ -35,11 +35,13 @@ public class Recipe {
     @Column(name = "img")
     private String img;
 
-    @OneToMany(
-            cascade = CascadeType.MERGE,
-            orphanRemoval = true,
-            fetch = FetchType.LAZY
-    )
-    private Set<Ingredient> ingredients = new HashSet<>();
+    @Column(name = "ingredients")
+    private String ingredients;
+
+    @Column(name = "time")
+    private String time;
+
+    @Column(name = "difficulty")
+    private String difficulty;
 
 }

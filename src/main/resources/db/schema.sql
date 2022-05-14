@@ -3,9 +3,7 @@ DROP TABLE IF EXISTS users_liked_recipes;
 DROP TABLE IF EXISTS users_roles;
 DROP TABLE IF EXISTS users cascade;
 DROP TABLE IF EXISTS roles cascade;
-DROP TABLE IF EXISTS recipes_ingredients;
 DROP TABLE IF EXISTS recipes cascade;
-DROP TABLE IF EXISTS ingredients cascade;
 
 CREATE TABLE users
 (
@@ -25,30 +23,20 @@ CREATE TABLE roles
 CREATE TABLE recipes
 (
     id          BIGINT AUTO_INCREMENT NOT NULL,
-    title       VARCHAR(255)          NULL,
-    description longtext              NULL,
-    popularity  INT                   NULL,
-    img         VARCHAR(225),
+    title       VARCHAR(255)          NOT NULL,
+    description longtext              NOT NULL,
+    popularity  INT                   NOT NULL,
+    img         VARCHAR(225)          NOT NULL,
+    ingredients longtext              NOT NULL,
+    time        varchar(225)          not null,
+    difficulty  varchar(225)          not null,
     CONSTRAINT pk_recipes PRIMARY KEY (id)
-);
-
-CREATE TABLE ingredients
-(
-    id   BIGINT AUTO_INCREMENT NOT NULL,
-    name VARCHAR(255)          NULL,
-    CONSTRAINT pk_ingredients PRIMARY KEY (id)
 );
 
 CREATE TABLE users_roles
 (
     role_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL
-);
-
-CREATE TABLE recipes_ingredients
-(
-    recipe_id     BIGINT NOT NULL,
-    ingredient_id BIGINT NOT NULL
 );
 
 CREATE TABLE users_liked_recipes
@@ -83,7 +71,7 @@ VALUES ('Пісочне печиво'),
        ('Ягоди'),
        ('Ванілін');
 
-INSERT INTO recipes (title, description, popularity, img)
+INSERT INTO recipes (title, description, popularity, img, ingredients, time, difficulty)
 VALUES ('Малиновий торт із морозивом', '1. Печиво подрібнюємо, змішуємо з розм’якшеним вершковим маслом та викладаємо у форму з високими знімними бортами.
 
 2. У глибоку посудину викладаємо морозиво і залишаємо на 10–15 хвилин за кімнатної температури.
@@ -92,7 +80,13 @@ VALUES ('Малиновий торт із морозивом', '1. Печиво 
 
 4. Викладаємо суміш на корж із печива, розрівнюємо поверхню. Ставимо в морозилку для остаточного замерзання.
 
-5. Виймаємо торт із форми та прикрашаємо цілими ягодами — свіжими або замороженими.', 0, 'https://rud.ua/uploads/under_recipe/Malinoviy_tort-morozivo_600x300_61cc2028604e5.jpg');
+5. Виймаємо торт із форми та прикрашаємо цілими ягодами — свіжими або замороженими.', 0,
+        'https://rud.ua/uploads/under_recipe/Malinoviy_tort-morozivo_600x300_61cc2028604e5.jpg', 'Пісочне печиво
+       Вершкове масло
+       Малина перетерта
+       Морозиво
+       Ягоди
+       Ванілін', '120 хвилин', 'легко');
 
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id)
 VALUES (1, 1),
@@ -102,5 +96,5 @@ VALUES (1, 1),
        (1, 5),
        (1, 6);
 
-INSERT INTO users_created_recipes (user_id, recipe_id) VALUES
-(1, 1);
+INSERT INTO users_created_recipes (user_id, recipe_id)
+VALUES (1, 1);
