@@ -21,7 +21,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "order by rec.popularity desc " +
             "limit 7",
     nativeQuery = true)
-    List<Recipe> findSevenPopular();
+    List<Recipe> findPopular();
 
 
 }

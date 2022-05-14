@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users_created_recipes;
 DROP TABLE IF EXISTS users_liked_recipes;
 DROP TABLE IF EXISTS users_roles;
-DROP TABLE IF EXISTS users cascade ;
+DROP TABLE IF EXISTS users cascade;
 DROP TABLE IF EXISTS roles cascade;
 DROP TABLE IF EXISTS recipes_ingredients;
 DROP TABLE IF EXISTS recipes cascade;
@@ -28,6 +28,7 @@ CREATE TABLE recipes
     title       VARCHAR(255)          NULL,
     description longtext              NULL,
     popularity  INT                   NULL,
+    img         VARCHAR(225),
     CONSTRAINT pk_recipes PRIMARY KEY (id)
 );
 
@@ -73,3 +74,30 @@ VALUES ('user'),
 INSERT INTO users_roles (role_id, user_id)
 VALUES (1, 1),
        (2, 2);
+
+INSERT INTO ingredients (name)
+VALUES ('Пісочне печиво'),
+       ('Вершкове масло'),
+       ('Малина перетерта'),
+       ('Морозиво'),
+       ('Ягоди'),
+       ('Ванілін');
+
+INSERT INTO recipes (title, description, popularity, img)
+VALUES ('Малиновий торт із морозивом', '1. Печиво подрібнюємо, змішуємо з розм’якшеним вершковим маслом та викладаємо у форму з високими знімними бортами.
+
+2. У глибоку посудину викладаємо морозиво і залишаємо на 10–15 хвилин за кімнатної температури.
+
+3. «Малину – апельсин», перетерті із цукром, додаємо до морозива та змішуємо за допомогою блендера. Отриману масу ставимо на півгодини в холодильник для застигання.
+
+4. Викладаємо суміш на корж із печива, розрівнюємо поверхню. Ставимо в морозилку для остаточного замерзання.
+
+5. Виймаємо торт із форми та прикрашаємо цілими ягодами — свіжими або замороженими.', 0, 'https://rud.ua/uploads/under_recipe/Malinoviy_tort-morozivo_600x300_61cc2028604e5.jpg');
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (1, 6);

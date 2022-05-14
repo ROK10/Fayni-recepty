@@ -32,6 +32,9 @@ public class Recipe {
     @Column(name = "popularity")
     private Integer popularity;
 
+    @Column(name = "img")
+    private String img;
+
     @OneToMany(
             cascade = CascadeType.MERGE,
             orphanRemoval = true,
