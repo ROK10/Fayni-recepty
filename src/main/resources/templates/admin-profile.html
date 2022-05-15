@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header>
+    <div th:replace="header :: myheader"></div>
+</header>
+<body class="Site">
+<main class="content">
+    <div class="user-info" >
+        <div class="profile-photo" ><img src= "../static/images/adminphoto.jpg" class="profile-photo"></div>
+        <div class="profile-info">
+            <div class="profile-info"><div><a class="profile-name">Ім'я користувача: </a><a class="profile-name" th:text="getusername">Username</a></div></div>
+            <div class="profile-info"><div><a class="profile-name" th:text="getusername">Тип доступу: Admin</a></div></div>
+            <div class="profile-info"><div><a class="profile-name" th:text="getusername">Рецептів потрібно затвердити: 2</a></div></div>
+        </div>
+    </div>
+    <div class="recipe-add" >
+        <button type="submit" class="profile-button add-button">Створити рецепт</button>
+    </div>
+    <div class="block1">
+        <div class="popular-label"><a class="popular-label-text">Рецепти, які потрібно затвердити</a></div>
+        <div class="block-line popular-recipes">
+            <article class="recipe">
+                <a><img src= "../static/images/test.png"  class="test-image-recommended"></a>
+                <span class="test-name"><a class="test-name-text">Малиновий торт із морозивом</a></span>
+                <button type="submit" class="profile-button confirm-button">Затвердити рецепт</button>
+            </article>
+        </div>
+    </div>
+    </div>
+</main>
+</body>
+
+</html>

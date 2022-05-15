@@ -226,7 +226,7 @@ form {
   cursor: pointer;
   width: 100%;
 }
-.login-buttons:hover {
+.login-buttons :hover {
   opacity: 0.8;
 }
 .container {
@@ -268,6 +268,48 @@ form {
 }
 .container {
   padding: 16px;
+}
+.user-info {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  hight: 300px;
+}
+.profile-photo {
+  width: 300px;
+  hight: 300px;
+}
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 30px;
+}
+.profile-name {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font: 40px Roboto, sans-serif;
+  text-align: left;
+  margin: 0;
+}
+.recipe-add {
+  margin-top: 50px;
+}
+.profile-button {
+  background-color: #9d4400;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.profile-button :hover {
+  opacity: 0.8;
+}
+.profile-button .confirm-button {
+  margin-top: 10px;
 }
 .Site {
   background: white;
@@ -342,9 +384,6 @@ form {
 }
 .test-name-text :hover {
   text-decoration-line: underline;
-}
-.block2 {
-  height: 206px;
 }
 .hidden {
   display: none!important;
