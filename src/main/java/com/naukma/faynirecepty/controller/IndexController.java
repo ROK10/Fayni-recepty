@@ -3,7 +3,7 @@ package com.naukma.faynirecepty.controller;
 import com.naukma.faynirecepty.config.CustomPasswordEncoder;
 import com.naukma.faynirecepty.model.entity.Recipe;
 import com.naukma.faynirecepty.model.entity.User;
-import com.naukma.faynirecepty.repository.RecipeRepository;
+import com.naukma.faynirecepty.service.RecipeService;
 import com.naukma.faynirecepty.service.UserService;
 import com.naukma.faynirecepty.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    private RecipeRepository recipeRepository;
+    private RecipeService recipeService;
 
     @Autowired
     private UserService userService;
@@ -66,7 +66,7 @@ public class IndexController {
     @RequestMapping({"/", ""})
     public String index(Model model){
 
-        List<Recipe> popular = recipeRepository.findPopular();
+        List<Recipe> popular = recipeService.findPopular();
 
         model.addAttribute("popular", popular);
 
@@ -75,7 +75,7 @@ public class IndexController {
 
     @RequestMapping({"/recipe/{id}", ""})
     public String showInfoPage(Model model, @PathVariable(name = "id") Long id, HttpSession session) {
-        Recipe recipe = recipeRepository.getById(id);
+        Recipe recipe = recipeService.findById(id);
         User creator = userService.getUserById(recipe.getCreatorId());
 
         model.addAttribute("recipe", recipe);
@@ -105,7 +105,7 @@ public class IndexController {
     public String form(@RequestParam(name = "searchInput") String search,
                        Model model, HttpSession session) {
 
-        List<Recipe> searchRes = recipeRepository.findAllContaining(search);
+        List<Recipe> searchRes = recipeService.findAllContaining(search);
         model.addAttribute("searchRes", searchRes);
         session.setAttribute("search", search);
 
@@ -117,7 +117,7 @@ public class IndexController {
 
         String search = (String) session.getAttribute("search");
 
-        List<Recipe> searchRes = recipeRepository.findAllContaining(search);
+        List<Recipe> searchRes = recipeService.findAllContaining(search);
         model.addAttribute("searchRes", searchRes);
 
         return "search-result";

@@ -18,7 +18,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query(value = "select * " +
             "from recipes rec " +
-            "group by rec.popularity " +
             "order by rec.popularity desc " +
             "limit 5",
             nativeQuery = true)

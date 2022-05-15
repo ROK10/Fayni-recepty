@@ -8,11 +8,11 @@
 <body class="Site">
 <main class="content">
     <div class="block2">
-        <div class="popular-label"><a class="popular-label-text">Рзультат пошуку</a></div>
+        <div class="popular-label"><a class="popular-label-text">Результат пошуку</a></div>
         <div class="search-result-block">
 
-            <div class="block-line popular-recipes" th:each="res: ${searchRes}">
-                <article class="recipe">
+            <div class="block-line popular-recipes">
+                <article class="recipe" th:each="res: ${searchRes}">
                     <a th:href="@{/recipe/{id}(id = ${res.id})}"><img src= "../static/images/test.png" th:src="${res.img}" class="test-image-recommended"></a>
                     <span class="test-name"><a class="test-name-text" th:href="@{/recipe/{id}(id = ${res.id})}" th:text="${res.title}"></a></span>
                 </article>

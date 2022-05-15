@@ -234,11 +234,3 @@ VALUES ('Шоколадний мус','Лише 4 інгредієнти, лиш
 6
 Розкласти у креманки і поставити в холодильник на ніч.', 0,
         'https://fayni-recepty.com.ua/wp-content/uploads/2021/03/shokoladny-mus-1024x683.jpg', '35 хвилин', 'легко', 1);
-
-INSERT INTO users_created_recipes (user_id, recipe_id)
-VALUES (1, 1);
-VALUES (1, 2);
-VALUES (1, 3);
-VALUES (1, 4);
-VALUES (1, 5);
-VALUES (1, 6);

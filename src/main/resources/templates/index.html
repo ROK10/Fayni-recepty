@@ -9,8 +9,8 @@
 <main class="content">
     <div class="block1">
         <div class="popular-label"><a class="popular-label-text">Рекомендовані рецепти</a></div>
-        <div class="block-line popular-recipes" th:each="Recipe: ${popular}">
-            <article class="recipe">
+        <div class="block-line popular-recipes">
+            <article class="recipe" th:each="Recipe: ${popular}">
                 <a th:href="@{/recipe/{id}(id = ${Recipe.id})}"><img src= "../static/images/test.png" th:src="${Recipe.img}" class="test-image-recommended"></a>
                 <span class="test-name"><a class="test-name-text" th:href="@{/recipe/{id}(id = ${Recipe.id})}" th:text="${Recipe.title}">Малиновий торт із морозивом</a></span>
             </article>
