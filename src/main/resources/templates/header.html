@@ -1,17 +1,28 @@
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-<div th:fragment = "myheader" >
+<div th:fragment="myheader">
     <link th:href="@{/style.css}"
           href="../static/style.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Файні рецепти</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
     <div class="header">
         <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
         <div class="login">
-            <button class="button button-login">Login</button>
-            <button class="button button-signup">Sign Up</button>
+
+            <form sec:authorize="isAnonymous()">
+                <button formaction="/login" type="submit" class="button button-login">Login</button>
+            </form>
+
+            <form sec:authorize="isAnonymous()">
+                <button formaction="/register" type="submit" class="button button-signup">Sign Up</button>
+            </form>
+
+            <form sec:authorize="isAuthenticated()">
+                <button formaction="/logout" type="submit" class="button button-login">Logout</button>
+            </form>
         </div>
     </div>
 </div>

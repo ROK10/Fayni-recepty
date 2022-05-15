@@ -1,13 +1,43 @@
 package com.naukma.faynirecepty.service;
 
+import com.naukma.faynirecepty.model.entity.Role;
+import com.naukma.faynirecepty.model.entity.User;
 import com.naukma.faynirecepty.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service("userService")
-@AllArgsConstructor
 public class UserService {
 
-    private UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
+
+    @Transactional
+    public User getUserByUsername(String username){
+        return userRepository.findUserByUsername(username).orElse(null);
+    }
+
+    @Transactional
+    public User createUser(String username, String hexedPsw){
+
+        return userRepository.save(User.builder()
+                .username(username)
+                .password(hexedPsw)
+                .role(Role.builder().name("user").build())
+                .build());
+    }
+
+    public void save(User user){
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public User getUserById(Long id){
+        return userRepository.findById(id).orElse(null);
+    }
+
 
 }

@@ -1,9 +1,9 @@
 package com.naukma.faynirecepty.repository;
 
 import com.naukma.faynirecepty.model.entity.Recipe;
-import com.naukma.faynirecepty.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,8 +20,14 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "from recipes rec " +
             "group by rec.popularity " +
             "order by rec.popularity desc " +
-            "limit 7",
+            "limit 5",
     nativeQuery = true)
     List<Recipe> findPopular();
+
+//    @Query(value = "select * " +
+//            "from recipes rec" +
+//            "where lower(rec.title) like concat('%',:search,'%')",
+//    nativeQuery = true)
+//    List<Recipe> findAllContaining(@Param("search") String search);
 
 }
