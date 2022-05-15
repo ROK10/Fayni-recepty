@@ -217,3 +217,8 @@ VALUES ('Шоколадний мус','Лише 4 інгредієнти, лиш
 
 INSERT INTO users_created_recipes (user_id, recipe_id)
 VALUES (1, 1);
+VALUES (1, 2);
+VALUES (1, 3);
+VALUES (1, 4);
+VALUES (1, 5);
+VALUES (1, 6);
