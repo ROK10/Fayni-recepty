@@ -13,6 +13,9 @@
   display: flex;
   justify-content: space-between;
 }
+.form {
+  border: 0px;
+}
 .logo {
   box-sizing: border-box;
   width: 270px;
