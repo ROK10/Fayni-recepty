@@ -2,7 +2,25 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
                      xmlns:th="http://www.thymeleaf.org">
 <header>
-    <div th:replace="header :: myheader"></div>
+    <link th:href="@{/style.css}"
+          href="../static/style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Файні рецепти</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <div class="header">
+        <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
+        <div class="search-line">
+            <div class="search" th:href="@{/}">
+                <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
+                <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
+            </div>
+        </div>
+        <div class="login">
+            <button class="button button-login">Login</button>
+            <button class="button button-signup">Sign Up</button>
+        </div>
+    </div>
 </header>
 <body class="Site">
 <main class="content">
