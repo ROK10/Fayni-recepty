@@ -229,6 +229,43 @@ form {
 .container {
   padding: 16px;
 }
+form {
+  border: 3px solid #f1f1f1;
+}
+.registration-form-label {
+  text-align: center;
+}
+.registration-input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.registration-input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.registration-buttons {
+  background-color: #9d4400;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.registration-buttons:hover {
+  opacity: 0.8;
+}
+.container {
+  padding: 16px;
+}
 .Site {
   background: white;
   height: 100%;
