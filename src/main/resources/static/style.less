@@ -22,10 +22,10 @@
   margin-right: auto;
   flex: 1;
 }
-.block2{
+.block1{
   box-sizing: border-box;
   width: 100%;
-  height: 288px;
+  height: 300px;
 }
 
 .popular-label{
@@ -44,16 +44,19 @@
   //font-size: 50;
   margin: 0;
 }
-.popular-tests{
+.block-line{
   box-sizing: border-box;
   width: 100%;
   height: 240px;
   display: flex;
 }
-.test{
+.recipe{
   box-sizing: border-box;
-  height: 240px;
-  width: 1152/7px;
+  display: flex;
+  flex-direction: column;
+  height: 260px;
+  width: 220px;
+  max-width: 220px;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -68,9 +71,18 @@
 .test-name{
   box-sizing: border-box;
   height: 40px;
-  width: 1152/5px;
+  //width: 1152/5px;
+  text-align: center;
+}
+.test-name-text{
+  box-sizing: border-box;
   text-align: center;
   font: 18px Roboto, sans-serif;
+  text-decoration: none;
+  color: black;
+  :hover{
+    text-decoration-line:underline;
+  }
 }
 .block2{
   height: 206px;

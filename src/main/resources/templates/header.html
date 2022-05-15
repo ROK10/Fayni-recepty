@@ -4,13 +4,13 @@
     <link th:href="@{/style.css}"
           href="../static/style.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Файні рецепти</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <div class="header">
         <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
         <div class="search-line">
-            <div class="search">
+            <div class="search" th:href="@{/}">
                 <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
                 <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
             </div>
