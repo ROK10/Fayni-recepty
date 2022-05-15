@@ -103,14 +103,15 @@ public class IndexController {
 
     //method for search
     @RequestMapping(value = "/find-recipes", method = RequestMethod.POST)
-    public void form(@RequestParam(name = "searchInput") String search,
+    public String form(@RequestParam(name = "searchInput") String search,
                        Model model) {
 
         List<Recipe> searchRes = recipeRepository.findAllContaining(search);
 
+        model.addAttribute("searchInput", search);
         model.addAttribute("searchRes", searchRes);
 
-        //return "redirect:/";
+        return "search-result";
     }
 
 
