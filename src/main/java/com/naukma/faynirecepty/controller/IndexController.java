@@ -101,18 +101,26 @@ public class IndexController {
         return "wrong_id_recipe";
     }
 
-    //method for search
     @RequestMapping(value = "/find-recipes", method = RequestMethod.POST)
     public String form(@RequestParam(name = "searchInput") String search,
-                       Model model) {
+                       Model model, HttpSession session) {
 
         List<Recipe> searchRes = recipeRepository.findAllContaining(search);
+        model.addAttribute("searchRes", searchRes);
+        session.setAttribute("search", search);
 
-        model.addAttribute("searchInput", search);
+        return "redirect:/search-result";
+    }
+
+    @RequestMapping(value = "/search-result", method = RequestMethod.GET)
+    public String findGet(Model model, HttpSession session) {
+
+        String search = (String) session.getAttribute("search");
+
+        List<Recipe> searchRes = recipeRepository.findAllContaining(search);
         model.addAttribute("searchRes", searchRes);
 
         return "search-result";
     }
-
 
 }
