@@ -37,9 +37,6 @@ public class Recipe {
     @Column(name = "img")
     private String img;
 
-    @Column(name = "ingredients")
-    private String ingredients;
-
     @Column(name = "time")
     private String time;
 
