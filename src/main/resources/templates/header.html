@@ -23,5 +23,33 @@
         </div>
     </div>
 </div>
+<div th:fragment="myheaderwithsearch">
+    <link th:href="@{/style.css}"
+          href="../static/style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Файні рецепти</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <div class="header">
+        <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
+        <div class="search-line">
+            <div class="search" th:href="@{/}">
+                <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
+                <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
+            </div>
+        </div>
+        <div class="login">
+            <form class="form" sec:authorize="isAnonymous()">
+                <button onclick = "window.location.href='/login'" formaction="/login" type="submit" class="button button-login">Login</button>
+            </form>
+            <form class="form" sec:authorize="isAnonymous()">
+                <button onclick = "window.location.href='/registerForm'" formaction="/register" type="submit" class="button button-signup">Sign Up</button>
+            </form>
+            <form class="form" sec:authorize="isAuthenticated()">
+                <button  onclick = "window.location.href='/login'" formaction="/logout" type="submit" class="button button-login">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
