@@ -17,7 +17,7 @@ public class UserService {
 
     @Transactional
     public User getUserByUsername(String username){
-        return userRepository.findUserByUsername(username).orElse(null);
+        return userRepository.findByUsername(username).orElse(null);
     }
 
     @Transactional
@@ -30,6 +30,7 @@ public class UserService {
                 .build());
     }
 
+    @Transactional
     public void save(User user){
         userRepository.save(user);
     }

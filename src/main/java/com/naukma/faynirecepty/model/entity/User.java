@@ -33,19 +33,23 @@ public class User {
     private String password;
 
     @OneToMany(
-            cascade = CascadeType.MERGE,
+            cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
     private List<Recipe> likedRecipes = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.MERGE,
-            fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Role role;
+
+    public Role getRole(){
+        return role;
+    }
 
 }

@@ -29,7 +29,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/register").anonymous()
                 .and()
-                .formLogin().defaultSuccessUrl("/").permitAll()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/").permitAll()
                 .and().logout()
                 .logoutSuccessUrl("/").permitAll();
     }

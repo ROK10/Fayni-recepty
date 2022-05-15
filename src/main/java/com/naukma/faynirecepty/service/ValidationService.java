@@ -22,10 +22,9 @@ public class ValidationService {
 
     public static boolean isRegFormValid(String username, String password) {
 
-        if (!isPswValid(password)) return false;
-        if (!isUsernameValid(username)) return false;
+        if (isPswValid(password) && isUsernameValid(username)) return true;
 
-        return true;
+        return false;
     }
 
     private static boolean isUsernameValid(String username) {

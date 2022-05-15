@@ -21,13 +21,14 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "group by rec.popularity " +
             "order by rec.popularity desc " +
             "limit 5",
-    nativeQuery = true)
+            nativeQuery = true)
     List<Recipe> findPopular();
 
-//    @Query(value = "select * " +
-//            "from recipes rec" +
-//            "where lower(rec.title) like concat('%',:search,'%')",
-//    nativeQuery = true)
-//    List<Recipe> findAllContaining(@Param("search") String search);
+    @Query(value = "select * " +
+            "from recipes rec " +
+            "where lower(rec.title) " +
+            "like concat('%',:search,'%')",
+            nativeQuery = true)
+    List<Recipe> findAllContaining(@Param("search") String search);
 
 }

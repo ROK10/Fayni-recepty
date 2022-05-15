@@ -18,7 +18,7 @@
                 <button onclick = "window.location.href='/registerForm'" formaction="/register" type="submit" class="button button-signup">Sign Up</button>
             </form>
             <form class="form" sec:authorize="isAuthenticated()">
-                <button  onclick = "window.location.href='/login'" formaction="/logout" type="submit" class="button button-login">Logout</button>
+                <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
             </form>
         </div>
     </div>

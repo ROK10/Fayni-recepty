@@ -6,13 +6,19 @@
 <body>
 <main class="content">
 <h2 class="login-form-label"><a>Login Form</a></h2>
-<form>
+<form th:action="@{/login}" method="post">
+    <div th:if="${param.error}" class="alert alert-error">
+        Invalid username and password
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been logged out
+    </div>
     <div class="container">
         <label><b>Username</b></label>
-        <input class="login-input text" type="text" placeholder="Enter Username" name="uname" required>
+        <input class="login-input text" type="text" placeholder="Enter Username" name="username" required>
 
         <label><b>Password</b></label>
-        <input class="login-input password" type="password" placeholder="Enter Password" name="psw" required>
+        <input class="login-input password" type="password" placeholder="Enter Password" name="password" required>
 
         <button type="submit" class="login-buttons log-in">Login</button>
 
