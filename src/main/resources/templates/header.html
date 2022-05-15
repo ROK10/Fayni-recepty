@@ -34,7 +34,7 @@
         <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
         <div class="search-line">
             <div class="search" th:href="@{/}">
-                <input class="input" type="text" name="nameInput" placeholder="Пошук рецептів">
+                <input class="input" type="text" name="searchInput" placeholder="Пошук рецептів">
                 <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <button onclick = "window.location.href='/registerForm'" formaction="/register" type="submit" class="button button-signup">Sign Up</button>
             </form>
             <form class="form" sec:authorize="isAuthenticated()">
-                <button  onclick = "window.location.href='/login'" formaction="/logout" type="submit" class="button button-login">Logout</button>
+                <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
             </form>
         </div>
     </div>
