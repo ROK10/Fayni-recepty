@@ -33,10 +33,12 @@
     <div class="header">
         <div class="logo"><a class="logo-text" href="/">Файні рецепти</a></div>
         <div class="search-line">
-            <div class="search" th:href="@{/}">
-                <input class="input" type="text" name="searchInput" placeholder="Пошук рецептів">
-                <button class="button button-search" data-tooltip="Додати товар до списку">Search</button>
-            </div>
+            <form class="form" action="/find-recipes" method="post">
+                <div class="search" th:href="@{/}">
+                    <input class="input" type="text" placeholder="Пошук рецептів">
+                    <button  class="button button-search" data-tooltip="Додати товар до списку">Search</button>
+                </div>
+            </form>
         </div>
         <div class="login">
             <form class="form" sec:authorize="isAnonymous()">
