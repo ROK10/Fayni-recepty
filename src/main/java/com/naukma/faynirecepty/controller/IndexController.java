@@ -79,6 +79,19 @@ public class IndexController {
         return "forward:/admin";
     }
 
+    @RequestMapping(value = "/delete-recipe", method = RequestMethod.POST)
+    public String deleteRecipe(HttpSession session) {
+
+        RecipeDto recipe = (RecipeDto) session.getAttribute("liked");
+        Long recipeId = recipe.getId();
+
+        Recipe toDelete = recipeService.findById(recipeId);
+
+        recipeService.delete(toDelete);
+
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/registerForm", method = RequestMethod.POST)
     public String form(@RequestParam(name = "username") String username,
                        @RequestParam(name = "psw") String psw,

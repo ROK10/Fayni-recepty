@@ -57,6 +57,13 @@
         </div>
     </div>
 
+    <div sec:authorize="hasRole('ROLE_admin')">
+
+        <form th:action="@{/delete-recipe}" method="post" id="recipeDelete">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+
 </main>
 </body>
 </html>

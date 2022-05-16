@@ -41,4 +41,9 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
+    @Transactional
+    public void delete(Recipe recipe){
+        recipeRepository.delete(recipe);
+    }
+
 }
