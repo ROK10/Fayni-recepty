@@ -45,6 +45,11 @@ public class IndexController {
         return "login";
     }
 
+    @RequestMapping({"/admin", ""})
+    public String adminPage() {
+        return "admin-profile";
+    }
+
     @RequestMapping(value = "/registerForm", method = RequestMethod.POST)
     public String form(@RequestParam(name = "username") String username,
                        @RequestParam(name = "psw") String psw,

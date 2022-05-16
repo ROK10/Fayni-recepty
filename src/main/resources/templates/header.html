@@ -20,8 +20,11 @@
             <form class="form" sec:authorize="isAuthenticated()">
                 <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
             </form>
-            <form class="form" sec:authorize="isAuthenticated()">
+            <form class="form" sec:authorize="hasRole('ROLE_user')">
                 <button  onclick = "window.location.href='/profile'" formaction="/profile" type="submit" class="button button-signup">Моя сторінка</button>
+            </form>
+            <form class="form" sec:authorize="hasRole('ROLE_admin')">
+                <button  onclick = "window.location.href='/admin'" formaction="/admin" type="submit" class="button button-signup">Статистика</button>
             </form>
         </div>
     </div>
@@ -53,8 +56,11 @@
             <form class="form" sec:authorize="isAuthenticated()">
                 <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
             </form>
-            <form class="form" sec:authorize="isAuthenticated()">
+            <form class="form" sec:authorize="hasRole('ROLE_user')">
                 <button  onclick = "window.location.href='/profile'" formaction="/profile" type="submit" class="button button-signup">Моя сторінка</button>
+            </form>
+            <form class="form" sec:authorize="hasRole('ROLE_admin')">
+                <button  onclick = "window.location.href='/admin'" formaction="/admin" type="submit" class="button button-signup">Статистика</button>
             </form>
         </div>
     </div>
