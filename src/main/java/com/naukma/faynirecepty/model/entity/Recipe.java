@@ -45,5 +45,4 @@ public class Recipe {
 
     @Column(name = "creator_id")
     private Long creatorId;
-
 }

@@ -98,9 +98,9 @@ public class IndexController {
                 Set<Recipe> likedRecipes = userService.getUserByUsername(currentUserName).getLikedRecipes();
 
 
-//                if(likedRecipes != null) {
-//                    liked = likedRecipes.contains(recipe)? "yes" : "no";
-//                }
+                if(likedRecipes != null) {
+                    liked = likedRecipes.contains(recipe)? "yes" : "no";
+                }
             }
 
 //            RecipeDto recipeDto = new RecipeDto(recipe, liked);

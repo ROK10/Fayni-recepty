@@ -41,9 +41,19 @@ CREATE TABLE users_roles
 
 CREATE TABLE users_liked_recipes
 (
-    user_id   BIGINT NOT NULL,
-    recipe_id BIGINT NOT NULL
+    user_id          BIGINT NOT NULL,
+    liked_recipes_id BIGINT NOT NULL,
+    CONSTRAINT pk_users_likedrecipes PRIMARY KEY (user_id, liked_recipes_id)
 );
+
+ALTER TABLE users_liked_recipes
+    ADD CONSTRAINT uc_users_liked_recipes_usidliid UNIQUE (user_id, liked_recipes_id);
+
+ALTER TABLE users_liked_recipes
+    ADD CONSTRAINT fk_uselikrec_on_recipe FOREIGN KEY (liked_recipes_id) REFERENCES recipes (id);
+
+ALTER TABLE users_liked_recipes
+    ADD CONSTRAINT fk_uselikrec_on_user FOREIGN KEY (user_id) REFERENCES users (id);
 
 INSERT INTO users (username, password)
 VALUES ('user', 'userpass'),
