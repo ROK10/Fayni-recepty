@@ -43,10 +43,14 @@
         <div sec:authorize="isAuthenticated()">
 
             <div th:if="${session.liked == 'yes'}">
-                <button th:onclick="@{/recipe/{id}(id = ${recipe.id})/delete-from-liked}" th:formaction="@{/recipe/{id}(id = ${recipe.id})/delete-from-liked}" type="submit" class="button button-login">Liked</button>
+                <a th:href="@{/recipe/{id}(id = ${recipe.id})/delete-from-liked}">
+                    <button type="submit" class="button button-login">Liked</button>
+                </a>
             </div>
             <div th:if="${session.liked == 'no'}">
-                <button th:onclick="@{/recipe/{id}(id = ${recipe.id})/add-to-liked}" th:formaction="@{/recipe/{id}(id = ${recipe.id})/add-to-liked}" type="submit" class="button button-login">Like</button>
+                <a th:href="@{/recipe/{id}(id = ${recipe.id})/add-to-liked}">
+                    <button  type="submit" class="button button-login">Like</button>
+                </a>
             </div>
         </div>
     </main>
