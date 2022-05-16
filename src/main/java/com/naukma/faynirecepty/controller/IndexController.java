@@ -1,19 +1,27 @@
 package com.naukma.faynirecepty.controller;
 
 import com.naukma.faynirecepty.config.CustomPasswordEncoder;
+import com.naukma.faynirecepty.model.RecipeDto;
 import com.naukma.faynirecepty.model.entity.Recipe;
 import com.naukma.faynirecepty.model.entity.User;
 import com.naukma.faynirecepty.service.RecipeService;
 import com.naukma.faynirecepty.service.UserService;
 import com.naukma.faynirecepty.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class IndexController {
@@ -81,24 +89,59 @@ public class IndexController {
         model.addAttribute("recipe", recipe);
         model.addAttribute("creator", creator);
         if (recipe != null) {
-//            String liked = "no";
+            String liked = "no";
 
-//            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//            if (!(authentication instanceof AnonymousAuthenticationToken)) {
-//                String currentUserName = authentication.getName();
-//
-//                Set<Book> likedBooks = userService.getUserByUsername(currentUserName).getLikedBooks();
-//
-//                if(likedBooks != null) {
-//                    liked = likedBooks.contains(book)? "yes" : "no";
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (!(authentication instanceof AnonymousAuthenticationToken)) {
+                String currentUserName = authentication.getName();
+
+                Set<Recipe> likedRecipes = userService.getUserByUsername(currentUserName).getLikedRecipes();
+
+
+//                if(likedRecipes != null) {
+//                    liked = likedRecipes.contains(recipe)? "yes" : "no";
 //                }
-//            }
+            }
 
-//            BookDto bookDto = new BookDto(book, liked);
-            session.setAttribute("recipe", recipe);
+//            RecipeDto recipeDto = new RecipeDto(recipe, liked);
+            session.setAttribute("liked", liked);
             return "recipe";
         }
         return "wrong_id_recipe";
+    }
+
+    @PostMapping("/recipe/{id}/add-to-liked")
+    public String addToWishList(Authentication authentication, HttpSession session, @PathVariable(name = "id") Long recipeId) {
+        if (authentication == null)
+            return "redirect:/";
+
+        User byLogin = userService.getUserByUsername(authentication.getName());
+        Set<Recipe> likedRecipes = byLogin.getLikedRecipes();
+
+        if(likedRecipes == null) likedRecipes = new HashSet<>();
+
+        likedRecipes.add(recipeService.findById(recipeId));
+
+        userService.save(byLogin);
+
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/recipe/{id}/delete-from-liked")
+    public String deleteFromWishList(Authentication authentication, HttpSession session, @PathVariable(name = "id") Long recipeId) {
+        if (authentication == null)
+            return "redirect:/";
+
+        User byLogin = userService.getUserByUsername(authentication.getName());
+        Set<Recipe> likedRecipes = byLogin.getLikedRecipes();
+
+        if(likedRecipes == null) likedRecipes = new HashSet<>();
+
+        likedRecipes.remove(recipeService.findById(recipeId));
+
+        userService.save(byLogin);
+
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/find-recipes", method = RequestMethod.POST)

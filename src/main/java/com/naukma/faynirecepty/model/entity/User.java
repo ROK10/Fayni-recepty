@@ -33,11 +33,11 @@ public class User {
     private String password;
 
     @OneToMany(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             orphanRemoval = true,
             fetch = FetchType.LAZY
     )
-    private List<Recipe> likedRecipes = new ArrayList<>();
+    private Set<Recipe> likedRecipes = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
