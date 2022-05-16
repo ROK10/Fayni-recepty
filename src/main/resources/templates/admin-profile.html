@@ -4,33 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css'>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <div th:replace="header :: myheader"></div>
-    <!--<link th:href="@{/style.css}"
-          href="../static/style.css" type="text/css" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>Файні рецепти</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
-    <div class="header">
-        <div class="logo profile-logo"><a class="logo-text" href="/">Файні рецепти</a></div>
-        <div class="login">
-            <form class="form" sec:authorize="isAnonymous()">
-                <button onclick = "window.location.href='/login'" formaction="/login" type="submit" class="button button-login">Login</button>
-            </form>
-            <form class="form" sec:authorize="isAnonymous()">
-                <button onclick = "window.location.href='/registerForm'" formaction="/register" type="submit" class="button button-signup">Sign Up</button>
-            </form>
-            <form class="form" sec:authorize="isAuthenticated()">
-                <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
-            </form>
-            <form class="form" sec:authorize="isAuthenticated()">
-                <button  onclick = "window.location.href='/profile'" formaction="/profile" type="submit" class="button button-signup">Моя сторінка</button>
-            </form>
-        </div>
-    </div>-->
 </header>
 <body class="Site">
 <main class="content">
@@ -42,15 +16,32 @@
             <div class="profile-info"><div><a class="profile-name" th:text="getusername">Рецептів потрібно затвердити: 2</a></div></div>
         </div>
     </div>
-    <div class="recipe-add" >
-        <button type="submit" class="profile-button add-button">Створити рецепт</button>
-    </div>
+    <h1 class="profile-h1">Форма створення рецепту</h1>
 
+    <form class="profile-container">
+        <label><b>Назва</b></label>
+        <input class="recipe-input text" type="text" placeholder="Enter title" name="title" required>
+
+        <label><b>Опис</b></label>
+        <input class="recipe-input text" type="text" placeholder="Enter description" name="description" required>
+
+        <label><b>Час приготування</b></label>
+        <input class="recipe-input text" type="text" placeholder="Enter time" name="time" required>
+
+        <label><b>Складність рецепту</b></label>
+        <input class="recipe-input text" type="text" placeholder="Enter difficulty" name="difficulty" required>
+
+        <label><b>Картинка рецепту</b></label>
+        <input class="recipe-input text" type="text" placeholder="Enter img" name="img" required>
+
+        <button type="submit" class="recipe-add-button">Додати рецепт</button>
+
+    </form>
     <div class="block2">
         <div class="row">
-            <div class="container">
-                <h1>Всі рецепти на сайті</h1>
-                <table class="table responsive" id="sort">
+            <div class="profile-container">
+                <h1 class="profile-h1">Всі рецепти на сайті</h1>
+                <table class="table-responsive" id="sort">
                     <thead>
                     <tr>
                         <th scope="col">Recipe Id</th>
@@ -66,12 +57,11 @@
                 </table>
             </div>
         </div>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js'></script>
-        <script  th:href="@{/function.js}"></script>
+        <script  type="text/javascript" th:src="@{/function.js}" ></script>
     </div>
     </div>
 </main>
