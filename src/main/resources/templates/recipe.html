@@ -42,7 +42,7 @@
             libero orci hendrerit lacus, et malesuada lorem neque ac libero. Morbi tempor pulvinar pede. Donec vel elit.
         </div>
     </div>
-    <div sec:authorize="isAuthenticated()">
+    <div sec:authorize="hasRole('ROLE_user')">
 
         <div th:if="${session.liked.liked == 'yes'}">
             <form th:action="@{/delete-from-liked}" method="post" id="recipeDeleteForm">

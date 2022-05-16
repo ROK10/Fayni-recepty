@@ -45,16 +45,7 @@
     <div class="recipe-add" >
         <button type="submit" class="profile-button add-button">Створити рецепт</button>
     </div>
-    <div class="block1 admin-block">
-        <div class="popular-label"><a class="popular-label-text">Рецепти, які потрібно затвердити</a></div>
-        <div class="block-line popular-recipes">
-            <article class="recipe">
-                <a><img src= "../static/images/test.png"  class="test-image-recommended"></a>
-                <span class="test-name"><a class="test-name-text">Малиновий торт із морозивом</a></span>
-                <button type="submit" class="profile-button confirm-button">Затвердити рецепт</button>
-            </article>
-        </div>
-    </div>
+
     <div class="block2">
         <div class="row">
             <div class="container">
@@ -62,18 +53,14 @@
                 <table class="table responsive" id="sort">
                     <thead>
                     <tr>
+                        <th scope="col">Recipe Id</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Authors</th>
-                        <th scope="col">Journal</th>
-                        <th scope="col">Date</th>
                     </tr>
                     </thead>
-                    <tbody th:each="Recipe: ${popular}">
+                    <tbody th:each="Recipe: ${recipes}">
                     <tr>
                         <td data-table-header="id" th:text="${Recipe.id}"></td>
-                        <td data-table-header="title" th:href="@{/recipe/{id}(id = ${Recipe.id})}" th:text="${Recipe.title}"></td>
-                        <td data-table-header="creator-id">1</td>
-                        <td data-table-header="creator-name">Myhalevych</td>
+                        <td data-table-header="title"><a th:href="@{/recipe/{id}(id = ${Recipe.id})}" th:text="${Recipe.title}"></a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -46,8 +46,37 @@ public class IndexController {
     }
 
     @RequestMapping({"/admin", ""})
-    public String adminPage() {
+    public String adminPage(Model model) {
+
+        List<Recipe> recipes = recipeService.findAll();
+
+        model.addAttribute("recipes", recipes);
+
         return "admin-profile";
+    }
+
+    @RequestMapping(value = "/create-recipe", method = RequestMethod.POST)
+    public String createRecipe(@RequestParam(name = "title") String title,
+                               @RequestParam(name = "description") String description,
+                               @RequestParam(name = "time") String time,
+                               @RequestParam(name = "difficulty") String difficulty,
+                               @RequestParam(name = "img") String img,
+                               Authentication authentication) {
+        User user = userService.getUserByUsername(authentication.getName());
+
+        Recipe recipe = Recipe.builder()
+                .title(title)
+                .description(description)
+                .time(time)
+                .difficulty(difficulty)
+                .img(img)
+                .popularity(0)
+                .creatorId(user.getId())
+                .build();
+
+        recipeService.save(recipe);
+
+        return "forward:/admin";
     }
 
     @RequestMapping(value = "/registerForm", method = RequestMethod.POST)
@@ -77,7 +106,7 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
 
         List<Recipe> popular = recipeService.findPopular();
 
@@ -103,8 +132,8 @@ public class IndexController {
                 Set<Recipe> likedRecipes = userService.getUserByUsername(currentUserName).getLikedRecipes();
 
 
-                if(likedRecipes != null) {
-                    liked = likedRecipes.contains(recipe)? "yes" : "no";
+                if (likedRecipes != null) {
+                    liked = likedRecipes.contains(recipe) ? "yes" : "no";
                 }
             }
 
@@ -124,7 +153,7 @@ public class IndexController {
         User byLogin = userService.getUserByUsername(authentication.getName());
         Set<Recipe> likedRecipes = byLogin.getLikedRecipes();
 
-        if(likedRecipes == null) likedRecipes = new HashSet<>();
+        if (likedRecipes == null) likedRecipes = new HashSet<>();
 
         RecipeDto recipe = (RecipeDto) session.getAttribute("liked");
         Long recipeId = recipe.getId();
@@ -152,7 +181,7 @@ public class IndexController {
         User byLogin = userService.getUserByUsername(authentication.getName());
         Set<Recipe> likedRecipes = byLogin.getLikedRecipes();
 
-        if(likedRecipes == null) likedRecipes = new HashSet<>();
+        if (likedRecipes == null) likedRecipes = new HashSet<>();
 
         RecipeDto recipe = (RecipeDto) session.getAttribute("liked");
         Long recipeId = recipe.getId();
