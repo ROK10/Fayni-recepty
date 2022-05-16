@@ -71,7 +71,7 @@ public class IndexController {
         return "redirect:/login";
     }
 
-    @RequestMapping({"/", ""})
+    @GetMapping("/")
     public String index(Model model){
 
         List<Recipe> popular = recipeService.findPopular();
@@ -81,7 +81,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping({"/recipe/{id}", ""})
+    @GetMapping("/recipe/{id}")
     public String showInfoPage(Model model, @PathVariable(name = "id") Long id, HttpSession session) {
         Recipe recipe = recipeService.findById(id);
         User creator = userService.getUserById(recipe.getCreatorId());
@@ -103,15 +103,16 @@ public class IndexController {
                 }
             }
 
-//            RecipeDto recipeDto = new RecipeDto(recipe, liked);
-            session.setAttribute("liked", liked);
+            RecipeDto recipeDto = new RecipeDto(recipe, liked);
+            session.setAttribute("liked", recipeDto);
+
             return "recipe";
         }
         return "wrong_id_recipe";
     }
 
-    @PostMapping("/recipe/{id}/add-to-liked")
-    public String addToWishList(Authentication authentication, HttpSession session, @PathVariable(name = "id") Long recipeId) {
+    @PostMapping("/add-to-liked")
+    public String addToWishList(Authentication authentication, HttpSession session) {
         if (authentication == null)
             return "redirect:/";
 
@@ -120,15 +121,26 @@ public class IndexController {
 
         if(likedRecipes == null) likedRecipes = new HashSet<>();
 
-        likedRecipes.add(recipeService.findById(recipeId));
+        RecipeDto recipe = (RecipeDto) session.getAttribute("liked");
+        Long recipeId = recipe.getId();
+
+        System.out.println(recipeId);
+
+        Recipe toAdd = recipeService.findById(recipeId);
+        Integer pop = toAdd.getPopularity();
+        toAdd.setPopularity(pop + 1);
+
+        recipeService.save(toAdd);
+
+        likedRecipes.add(toAdd);
 
         userService.save(byLogin);
 
         return "redirect:/profile";
     }
 
-    @PostMapping("/recipe/{id}/delete-from-liked")
-    public String deleteFromWishList(Authentication authentication, HttpSession session, @PathVariable(name = "id") Long recipeId) {
+    @PostMapping("/delete-from-liked")
+    public String deleteFromWishList(Authentication authentication, HttpSession session) {
         if (authentication == null)
             return "redirect:/";
 
@@ -137,7 +149,16 @@ public class IndexController {
 
         if(likedRecipes == null) likedRecipes = new HashSet<>();
 
-        likedRecipes.remove(recipeService.findById(recipeId));
+        RecipeDto recipe = (RecipeDto) session.getAttribute("liked");
+        Long recipeId = recipe.getId();
+
+        Recipe toAdd = recipeService.findById(recipeId);
+        Integer pop = toAdd.getPopularity();
+        toAdd.setPopularity(pop - 1);
+
+        recipeService.save(toAdd);
+
+        likedRecipes.remove(toAdd);
 
         userService.save(byLogin);
 
@@ -164,6 +185,22 @@ public class IndexController {
         model.addAttribute("searchRes", searchRes);
 
         return "search-result";
+    }
+
+    @GetMapping("/profile")
+    public String getLikedList(Model model, Authentication authentication) {
+
+        User user = userService.getUserByUsername(authentication.getName());
+
+        Set<Recipe> likedRecipes = user.getLikedRecipes();
+
+        if (likedRecipes == null)
+            likedRecipes = new HashSet<>();
+
+        model.addAttribute("user", user);
+        model.addAttribute("likedList", likedRecipes);
+
+        return "profile";
     }
 
 }

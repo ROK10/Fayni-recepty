@@ -1,6 +1,7 @@
 package com.naukma.faynirecepty.service;
 
 import com.naukma.faynirecepty.model.entity.Recipe;
+import com.naukma.faynirecepty.model.entity.User;
 import com.naukma.faynirecepty.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,6 +34,11 @@ public class RecipeService {
     @Transactional
     public List<Recipe> findAllContaining(String search){
         return recipeRepository.findAllContaining(search.toLowerCase());
+    }
+
+    @Transactional
+    public void save(Recipe recipe){
+        recipeRepository.save(recipe);
     }
 
 }

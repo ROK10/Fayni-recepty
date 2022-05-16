@@ -20,6 +20,9 @@
             <form class="form" sec:authorize="isAuthenticated()">
                 <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
             </form>
+            <form class="form" sec:authorize="isAuthenticated()">
+                <button  onclick = "window.location.href='/profile'" formaction="/profile" type="submit" class="button button-signup">Моя сторінка</button>
+            </form>
         </div>
     </div>
 </div>
@@ -49,6 +52,9 @@
             </form>
             <form class="form" sec:authorize="isAuthenticated()">
                 <button  onclick = "window.location.href='/logout'" formaction="/logout" type="submit" class="button button-login">Logout</button>
+            </form>
+            <form class="form" sec:authorize="isAuthenticated()">
+                <button  onclick = "window.location.href='/profile'" formaction="/profile" type="submit" class="button button-signup">Моя сторінка</button>
             </form>
         </div>
     </div>
