@@ -122,8 +122,10 @@ public class IndexController {
     public String index(Model model) {
 
         List<Recipe> popular = recipeService.findPopular();
+        List<Recipe> all = recipeService.findAll();
 
         model.addAttribute("popular", popular);
+        model.addAttribute("allRecipes", all);
 
         return "index";
     }

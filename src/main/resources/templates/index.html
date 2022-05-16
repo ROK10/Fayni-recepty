@@ -17,9 +17,12 @@
         </div>
     </div>
     <div class="block2">
-        <div class="popular-label"><a class="popular-label-text">Категорії рецептів</a></div>
-        <div class="block-line category-recipes" th:each="Recipe: ${popular}">
-
+        <div class="popular-label"><a class="popular-label-text">Усі рецепти</a></div>
+        <div class="block-line category-recipes">
+            <article class="recipe" th:each="rec: ${allRecipes}">
+                <a th:href="@{/recipe/{id}(id = ${rec.id})}"><img src= "../static/images/test.png" th:src="${rec.img}" class="test-image-recommended"></a>
+                <span class="test-name"><a class="test-name-text" th:href="@{/recipe/{id}(id = ${rec.id})}" th:text="${rec.title}">Малиновий торт із морозивом</a></span>
+            </article>
         </div>
     </div>
 
