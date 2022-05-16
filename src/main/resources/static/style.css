@@ -298,6 +298,33 @@ form {
 .recipe-add {
   margin-top: 50px;
 }
+.profile-h1 {
+  text-align: center;
+}
+.profile-container {
+  border-radius: 0;
+  border-color: white;
+}
+.recipe-input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.recipe-add-button {
+  background-color: #9d4400;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.recipe-add-button :hover {
+  opacity: 0.8;
+}
 .profile-button {
   background-color: #9d4400;
   color: white;
@@ -305,6 +332,9 @@ form {
   border: none;
   cursor: pointer;
   width: 100%;
+}
+.profile-button .add-button {
+  margin-top: 10px;
 }
 .profile-button :hover {
   opacity: 0.8;
@@ -315,7 +345,7 @@ form {
 .admin-block {
   min-height: 350px;
 }
-table {
+.table-responsive {
   width: 100%;
   border-collapse: collapse;
 }
@@ -326,7 +356,7 @@ tr:nth-of-type(even) {
   background: #fff;
 }
 th {
-  background: #5cb85c;
+  background: #9d4400;
   color: #ffffff;
   font-weight: 300;
 }
@@ -343,9 +373,6 @@ td {
   font-family: 'Roboto', sans-serif !important;
   font-weight: 300;
   line-height: 20px;
-}
-span {
-  font-style: italic;
 }
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
   table.responsive,
