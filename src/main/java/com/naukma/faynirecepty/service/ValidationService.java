@@ -14,7 +14,7 @@ public class ValidationService {
         if (recipe.getTitle().equals("") ||
                 recipe.getDescription().equals("") ||
                 recipe.getTime().equals("") ||
-                recipe.getDifficulty().equals(""))
+                recipe.getDifficulty().equals("") || recipe.getImg().equals(""))
             return false;
 
         return true;

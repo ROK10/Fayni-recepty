@@ -46,10 +46,12 @@ public class IndexController {
     }
 
     @RequestMapping({"/admin", ""})
-    public String adminPage(Model model) {
+    public String adminPage(Model model, Authentication authentication) {
 
         List<Recipe> recipes = recipeService.findAll();
+        User user = userService.getUserByUsername(authentication.getName());
 
+        model.addAttribute("user", user);
         model.addAttribute("recipes", recipes);
 
         return "admin-profile";
@@ -61,7 +63,7 @@ public class IndexController {
                                @RequestParam(name = "time") String time,
                                @RequestParam(name = "difficulty") String difficulty,
                                @RequestParam(name = "img") String img,
-                               Authentication authentication) {
+                               Authentication authentication, Model model) {
         User user = userService.getUserByUsername(authentication.getName());
 
         Recipe recipe = Recipe.builder()
@@ -73,6 +75,11 @@ public class IndexController {
                 .popularity(0)
                 .creatorId(user.getId())
                 .build();
+
+        if(!ValidationService.isRecipeValid(recipe)){
+            model.addAttribute("problem", "Incorrect values");
+            return "forward:/admin";
+        }
 
         recipeService.save(recipe);
 
@@ -86,6 +93,12 @@ public class IndexController {
         Long recipeId = recipe.getId();
 
         Recipe toDelete = recipeService.findById(recipeId);
+
+        List<User> users = userService.getAll();
+
+        for(User u: users){
+            u.getLikedRecipes().remove(toDelete);
+        }
 
         recipeService.delete(toDelete);
 
@@ -137,6 +150,7 @@ public class IndexController {
 
         model.addAttribute("recipe", recipe);
         model.addAttribute("creator", creator);
+
         if (recipe != null) {
             String liked = "no";
 

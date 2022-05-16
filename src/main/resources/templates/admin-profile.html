@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 <header>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css'>
     <div th:replace="header :: myheader"></div>
@@ -9,16 +8,16 @@
 <body class="Site">
 <main class="content">
     <div class="user-info" >
-        <div class="profile-photo" ><img src= "../static/images/adminphoto.jpg" class="profile-photo"></div>
         <div class="profile-info">
-            <div class="profile-info"><div><a class="profile-name">Ім'я користувача: </a><a class="profile-name" th:text="getusername">Username</a></div></div>
-            <div class="profile-info"><div><a class="profile-name" th:text="getusername">Тип доступу: Admin</a></div></div>
-            <div class="profile-info"><div><a class="profile-name" th:text="getusername">Рецептів потрібно затвердити: 2</a></div></div>
+            <div class="profile-info"><div><a class="profile-name">Ім'я користувача: </a><a class="profile-name" th:text="${user.getUsername()}">Username</a></div></div>
+            <div class="profile-info"><div><a class="profile-name">Тип доступу користувача: </a><a class="profile-name" th:text="${user.getRole().getName()}">Admin</a></div></div>
         </div>
     </div>
     <h1 class="profile-h1">Форма створення рецепту</h1>
 
-    <form class="profile-container">
+    <div th:text="${problem}"></div>
+
+    <form class="profile-container" action="/create-recipe" method="post">
         <label><b>Назва</b></label>
         <input class="recipe-input text" type="text" placeholder="Enter title" name="title" required>
 
@@ -40,18 +39,20 @@
     <div class="block2">
         <div class="row">
             <div class="profile-container">
-                <h1 class="profile-h1">Всі рецепти на сайті</h1>
+                <h1 class="profile-h1">Статистика по рецептам на сайті</h1>
                 <table class="table-responsive" id="sort">
                     <thead>
                     <tr>
                         <th scope="col">Recipe Id</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Popularity</th>
                     </tr>
                     </thead>
                     <tbody th:each="Recipe: ${recipes}">
                     <tr>
                         <td data-table-header="id" th:text="${Recipe.id}"></td>
                         <td data-table-header="title"><a th:href="@{/recipe/{id}(id = ${Recipe.id})}" th:text="${Recipe.title}"></a></td>
+                        <td data-table-header="id" th:text="${Recipe.popularity}"></td>
                     </tr>
                     </tbody>
                 </table>

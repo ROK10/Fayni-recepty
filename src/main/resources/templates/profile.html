@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 <header>
     <div th:replace="header :: myheader"></div>
 </header>
 <body class="Site">
 <main class="content">
     <div class="user-info">
-        <div class="profile-photo"><img src="../static/images/userphoto.png" class="profile-photo"></div>
         <div class="profile-info">
             <div class="profile-info">
                 <div><a class="profile-name">Ім'я користувача: </a><a class="profile-name" th:text="${user.getUsername()}">Username</a>
                 </div>
             </div>
             <div class="profile-info">
-                <div><a class="profile-name" th:text="${user.getRole().getName()}">Тип доступу: User</a></div>
+                <div><a class="profile-name">Тип доступу користувача: </a><a class="profile-name" th:text="${user.getRole().getName()}"> User</a></div>
             </div>
         </div>
     </div>
-    <div class="recipe-add">
-        <button type="submit" class="add-button">Створити рецепт</button>
-    </div>
+
     <div class="block1">
         <div class="popular-label"><a class="popular-label-text">Рецепти додані в обране</a></div>
 
