@@ -493,4 +493,12 @@ td {
   color: white;
   font: 20px Roboto, sans-serif;
 }
+.popular-recipes {
+  flex-wrap: wrap;
+  height: 260px;
+}
+.category-recipes {
+  flex-wrap: wrap;
+  height: 260px;
+}
 /*# sourceMappingURL=style.css.map */
